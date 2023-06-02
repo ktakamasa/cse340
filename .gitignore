@@ -16,3 +16,6 @@ node_modules
 **/.DS_Store
 
 README.md
+
+# pnpm lock, not to be altered 
+pnpm-lock.yaml
