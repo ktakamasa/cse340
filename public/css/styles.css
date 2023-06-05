@@ -1,6 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: dashed 1px gray; */
+}
+
+:root {
+  --color1: rgb(32, 175, 219);
+}
+
+body {
+  background-image: url("/images/site/small_check.jpg");
+}
+
+#wrapper {
+  font-family: "Source Sans Pro", sans-serif;
+  width: 90%;
+  margin: 1rem auto;
+  background-color: white;
+  font-weight: 600;
+  border: 5px solid var(--color1);
+  border-radius: 10px;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+span.siteName a {
+  font-size: 2.5rem;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+span.siteName a:visited {
+  color: black;
+}
+
+div#tools a {
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-right: 1rem;
+  color: black;
+}
+
+nav {
+  background-color: #222;
+  margin: 1rem;
+  padding: 5px 30px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav li {
+  color: white;
+  text-align: center;
+  list-style: none;
+}
+
+h1 {
+  margin-left: 1rem;
+}
+.hero {
+  position: relative;
+}
+
+.hero-img {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-img img {
+  max-width: fit-content;
+  width: 100%;
+}
+
+.hero-content {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--color1);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+}
+
+.hero-content button {
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: var(--color1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5rem;
+}
+
+.upgrade-img {
+  background-color: var(--color1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.upgrade-card a {
+  display: flex;
+  justify-content: center;
+  color: black
+}
+
+.upgrades h3 {
+  grid-column: 1/-1;
+}
+
+.reviews ul {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.reviews li {
+  margin-bottom: 1rem;
+}
+
+footer {
+  margin: 1rem 1rem 0.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .hero-content {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color1);
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin: 2rem 1rem;
+  }
+
+  .reviews li {
+    margin-bottom: 1.5rem;
+  }
 }
