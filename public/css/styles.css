@@ -6,6 +6,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: 600;
   /* border: dashed 1px gray; */
 }
 
@@ -22,7 +23,6 @@ body {
   width: 90%;
   margin: 1rem auto;
   background-color: white;
-  font-weight: 600;
   border: 5px solid var(--color1);
   border-radius: 10px;
 }
@@ -68,13 +68,16 @@ nav li {
   color: white;
   text-align: center;
   list-style: none;
+  padding: 0.5rem;  
 }
 
 h1 {
-  margin-left: 1rem;
+  text-align: center;
 }
+
 .hero {
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .hero-img {
@@ -103,16 +106,14 @@ h1 {
 .hero-content button {
   padding: 0.5rem;
   width: 100%;
-  font-size: 1.1rem;
-  font-weight: 600;
   text-align: center;
-  margin-top: 1rem;
   background-color: var(--color1);
 }
 
 .content {
   display: flex;
   flex-direction: column-reverse;
+  padding: 1rem;
 }
 
 h3 {
@@ -153,10 +154,15 @@ h3 {
 }
 
 footer {
-  margin: 1rem 1rem 0.5rem;
+  text-align: center;
 }
 
 @media only screen and (min-width: 600px) {
+  h1 {
+    margin-left: 1rem;
+    text-align: left;
+  }
+
   .hero-content {
     position: absolute;
     top: 50px;
@@ -165,14 +171,23 @@ footer {
     color: var(--color1);
   }
 
+  .hero-content button {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
   .content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
-    margin: 2rem 1rem;
+    margin: 2rem 1rem
   }
 
   .reviews li {
     margin-bottom: 1.5rem;
+  }
+
+  footer {
+    margin: 1rem 1rem 0.5rem;
   }
 }
