@@ -216,7 +216,14 @@ div.namePrice span{
   font-size: 1.2rem;
 }
 
-
+#errorHead {
+  text-align: center;
+  margin: 1rem;
+}
+#errorMessage {
+  text-align: center;
+  margin: 1rem;
+}
 
 @media only screen and (min-width: 600px) {
   h1 {
