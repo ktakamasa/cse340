@@ -46,9 +46,9 @@ Util.buildClassificationGrid = async function (data) {
         vehicle.inv_make +
         " " +
         vehicle.inv_model +
-        ' on CSE Motors" /></a>';
+        ' on CSE Motors"></a>';
       grid += '<div class="namePrice">';
-      grid += "<hr />";
+      grid += "<hr>";
       grid += "<h2>";
       grid +=
         '<a href="../../inv/detail/' +
@@ -75,6 +75,42 @@ Util.buildClassificationGrid = async function (data) {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
   return grid;
+};
+
+/* **************************************
+ * Build the details view HTML
+ * ************************************ */
+Util.buildDetails = async function (data) {
+  let invDetailsView;
+  if (data) {
+    invDetailsView = `
+  <div id="details-container">
+    <div id="details-image">
+      <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${
+      data.inv_model
+    }">
+    </div>
+    <div id="details-info">
+      <h2>${data.inv_make} ${data.inv_model} Details</h2>
+      <p><span class="descriptionBold">Price:</span> $${new Intl.NumberFormat(
+        "en-US"
+      ).format(data.inv_price)}</p>
+      <p><span class="descriptionBold">Description:</span> ${
+        data.inv_description
+      }</p>
+      <p><span class="descriptionBold">Color:</span> ${data.inv_color}</p>
+      <p><span class="descriptionBold">Miles:</span> ${new Intl.NumberFormat().format(
+        data.inv_miles
+      )}</p>
+    </div>
+  </div>
+  `;
+  } else {
+    invDetailsView +=
+      '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  }
+
+  return invDetailsView;
 };
 
 /* ****************************************

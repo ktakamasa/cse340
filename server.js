@@ -28,6 +28,8 @@ app.use(require("./routes/static"));
 app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use("/inv", inventoryRoute);
+// app.get('/favicon.ico', (req, res) => res.status(204)); // just to get rid of favicon error
+app.use(require("./routes/error"));
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });
