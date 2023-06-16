@@ -23,7 +23,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory item details by inv id view
  * ************************** */
 invCont.buildDetailsByInvId = async function (req, res, next) {
-  // const invId = req.params.invId;
+  const invId = req.params.invId;
   const data = await invModel.getInventoryByInvId(invId);
   // console.log(data);
   const invDetailsView = await utilities.buildDetails(data[0]);
