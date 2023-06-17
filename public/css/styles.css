@@ -259,17 +259,19 @@ margin: 0.5rem 0;
 
 /* Login view */
 
-form#loginForm {
+form#loginForm,
+form#registerForm {
   display: flex;
   flex-direction: column;
   margin: 1rem;
   padding: 1rem;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 input[type=email],
-input[type=text] {
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
@@ -277,7 +279,8 @@ input[type=text] {
   border: 1px solid black;
 }
 
-input.login-button {
+input.login-button,
+input.register-button {
   max-width: 100px;
   width: 100%;
   padding: 0.5rem;
@@ -295,7 +298,20 @@ form#loginForm p {
   margin-top: 1rem;
 }
 
+form#registerForm p:nth-child(1) {
+  margin-bottom: 1rem;
+}
+ul#passReq li{
+  margin: 0.25rem 0 0 1.5rem;
 
+}
+
+button#showPassBtn {
+  margin: 0.5rem 0;
+  padding: 0.25rem;
+  border-radius: 5px;
+  border: 1px solid black;
+}
 
 
 @media only screen and (min-width: 600px) {
@@ -362,7 +378,8 @@ form#loginForm p {
     }
 
     /* login view */
-    form#loginForm {
+    form#loginForm,
+    form#registerForm {
       max-width: 500px;
       width: 100%;
       margin: 1rem auto;
