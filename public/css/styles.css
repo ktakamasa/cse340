@@ -322,12 +322,12 @@ button#showPassBtn {
 }
 
 /* form validation */
-.invalid-input {
+.invalid-input:focus {
   background-color: rgba(255, 0, 0, 0.3);
   border: 2px solid red;
 }
 
-.valid-input {
+.valid-input:focus {
   background-color: rgba(0, 125, 0, 0.3);
   border: 2px solid green;
 }
