@@ -167,6 +167,7 @@ h3 {
 
 footer {
   text-align: center;
+  margin: 1rem;
 }
 
 /* Inventory */
@@ -313,6 +314,14 @@ button#showPassBtn {
   border: 1px solid black;
 }
 
+/* Flash Message */ 
+.notice {
+  list-style: none;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  color: var(--color1);
+}
 
 @media only screen and (min-width: 600px) {
   h1 {
