@@ -74,7 +74,7 @@ nav li a {
   color: white;
   text-align: center;
   text-decoration: none;
-  padding: 0.5rem;  
+  padding: 0.5rem;
 }
 
 nav li a:hover {
@@ -150,7 +150,7 @@ h3 {
 .upgrade-card a {
   display: flex;
   justify-content: center;
-  color: black
+  color: black;
 }
 
 .upgrades h3 {
@@ -178,7 +178,7 @@ ul#inv-display {
   justify-content: center;
 }
 
-ul#inv-display li{
+ul#inv-display li {
   list-style: none;
   margin: 1rem;
   padding: 1rem;
@@ -201,7 +201,7 @@ ul#inv-display li a > img {
   margin: 0 auto;
 }
 
-div.namePrice hr{
+div.namePrice hr {
   margin: 0.5rem auto;
   height: 5px;
   background-color: black;
@@ -213,7 +213,7 @@ div.namePrice {
 div.namePrice h2 {
   margin: 0.5rem;
 }
-div.namePrice span{
+div.namePrice span {
   font-size: 1.2rem;
 }
 
@@ -225,7 +225,6 @@ div.namePrice span{
   text-align: center;
   margin: 1rem;
 }
-
 
 /* Details View */
 #details-container {
@@ -239,7 +238,7 @@ div.namePrice span{
   justify-content: center;
   margin: 1rem;
 }
-#details-image img{
+#details-image img {
   max-width: fit-content;
   width: 100%;
   border-radius: 5px;
@@ -250,7 +249,7 @@ div.namePrice span{
 }
 
 #details-info > p {
-margin: 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .descriptionBold {
@@ -270,9 +269,9 @@ form#registerForm {
   border: 2px solid black;
 }
 
-input[type=email],
-input[type=text],
-input[type=password] {
+input[type="email"],
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
@@ -290,21 +289,20 @@ input.register-button {
   border: 1px solid black;
   background-color: var(--color1);
   color: white;
-  font-weight: 800; 
+  font-weight: 800;
   align-self: end;
 }
 
 form#loginForm p {
-  align-self: center;  
+  align-self: center;
   margin-top: 1rem;
 }
 
 form#registerForm p:nth-child(1) {
   margin-bottom: 1rem;
 }
-ul#passReq li{
+ul#passReq li {
   margin: 0.25rem 0 0 1.5rem;
-
 }
 
 button#showPassBtn {
@@ -314,13 +312,24 @@ button#showPassBtn {
   border: 1px solid black;
 }
 
-/* Flash Message */ 
+/* Flash Message */
 .notice {
   list-style: none;
   text-align: center;
   margin: 1rem;
   padding: 1rem;
   color: var(--color1);
+}
+
+/* form validation */
+.invalid-input {
+  background-color: rgba(255, 0, 0, 0.3);
+  border: 2px solid red;
+}
+
+.valid-input {
+  background-color: rgba(0, 125, 0, 0.3);
+  border: 2px solid green;
 }
 
 @media only screen and (min-width: 600px) {
@@ -353,7 +362,7 @@ button#showPassBtn {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
-    margin: 2rem 1rem
+    margin: 2rem 1rem;
   }
 
   .reviews li {
@@ -384,13 +393,13 @@ button#showPassBtn {
   #details-info > p {
     margin: 1rem 0;
     font-size: large;
-    }
+  }
 
-    /* login view */
-    form#loginForm,
-    form#registerForm {
-      max-width: 500px;
-      width: 100%;
-      margin: 1rem auto;
-    }
+  /* login view */
+  form#loginForm,
+  form#registerForm {
+    max-width: 500px;
+    width: 100%;
+    margin: 1rem auto;
+  }
 }

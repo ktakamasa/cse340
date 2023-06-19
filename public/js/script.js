@@ -1,6 +1,5 @@
 // source code: https://codepen.io/blainer/pen/xPpxWM
 // js for showing and hiding password
-
 const pswdBtn = document.querySelector("#showPassBtn");
 if (pswdBtn) {
   pswdBtn.addEventListener("click", function () {
@@ -15,3 +14,17 @@ if (pswdBtn) {
     }
   });
 }
+
+// form validation
+const inputs = document.querySelectorAll("input");
+inputs.forEach((input) => {
+  input.addEventListener("input", function () {
+    if (input.checkValidity()) {
+      input.classList.remove("invalid-input");
+      input.classList.add("valid-input");
+    } else {
+      input.classList.remove("valid-input");
+      input.classList.add("invalid-input");
+    }
+  });
+});
