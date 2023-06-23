@@ -259,8 +259,7 @@ div.namePrice span {
 
 /* Login view */
 
-form#loginForm,
-form#registerForm {
+.forms {
   display: flex;
   flex-direction: column;
   margin: 1rem;
@@ -293,12 +292,12 @@ input.register-button {
   align-self: end;
 }
 
-form#loginForm p {
+form.loginForm p {
   align-self: center;
   margin-top: 1rem;
 }
 
-form#registerForm p:nth-child(1) {
+form.registerForm p:nth-child(1) {
   margin-bottom: 1rem;
 }
 ul#passReq li {
@@ -330,6 +329,13 @@ button#showPassBtn {
 .valid-input:focus {
   background-color: rgba(0, 125, 0, 0.3);
   border: 2px solid green;
+}
+
+/* Vehicle Management */
+#vehicleManagementList > li {
+  text-align: center;
+  margin: 0.5rem;
+  list-style: none;
 }
 
 @media only screen and (min-width: 600px) {
@@ -396,10 +402,15 @@ button#showPassBtn {
   }
 
   /* login view */
-  form#loginForm,
-  form#registerForm {
+  .forms {
     max-width: 500px;
     width: 100%;
     margin: 1rem auto;
+  }
+
+  /* Vehicle Management */
+  #vehicleManagementList > li {
+    margin: 0.5rem 0 0.5rem 2rem;
+    text-align: left;
   }
 }

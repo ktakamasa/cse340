@@ -16,4 +16,7 @@ router.get(
   utilities.handleErrors(invController.buildDetailsByInvId)
 );
 
+// Route to build vehicle management view
+router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
+
 module.exports = router;

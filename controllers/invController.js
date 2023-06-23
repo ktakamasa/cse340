@@ -39,4 +39,16 @@ invCont.buildDetailsByInvId = async function (req, res, next) {
   });
 };
 
+/* ***************************
+ *  Build Vehicle Management view
+ * ************************** */
+invCont.buildVehicleManagement = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+  });
+};
+
 module.exports = invCont;
