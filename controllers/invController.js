@@ -64,7 +64,7 @@ invCont.buildNewClassification = async function (req, res, next) {
 };
 
 /* ******************************
- * Process classification
+ * Process add classification
  * ***************************** */
 invCont.addClassification = async function (req, res) {
   let nav = await utilities.getNav();
@@ -89,6 +89,69 @@ invCont.addClassification = async function (req, res) {
     req.flash("notice", "Sorry, the classification was not added.");
     res.status(501).render("inventory/add-classification", {
       title: "Add New Classification",
+      nav,
+      errors: null,
+    });
+  }
+};
+
+/* ******************************
+ * Build add new inventory view
+ * ***************************** */
+invCont.buildNewInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/add-inventory", {
+    title: "Add New Vehicle",
+    nav,
+    errors: null,
+  });
+};
+
+/* ******************************
+ * Process add inventory
+ * ***************************** */
+invCont.addInventory = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { 
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color
+  } = req.body;
+
+  const inventoryResult = await invModel.addInventory(
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color
+  );
+
+  if (inventoryResult) {
+    req.flash(
+      "notice",
+      `The ${inv_year} ${inv_model} ${inv_make} was successfully added.`
+    );
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the vehicle was not added.");
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add New Vehicle",
       nav,
       errors: null,
     });
