@@ -287,7 +287,7 @@ input.register-button {
   border-radius: 5px;
   border: 1px solid black;
   background-color: var(--color1);
-  color: white;
+  color: black;
   font-weight: 800;
   align-self: end;
 }
@@ -336,6 +336,23 @@ button#showPassBtn {
   text-align: center;
   margin: 0.5rem;
   list-style: none;
+}
+
+/* Add classification */
+#classificationFormDiv{
+  margin: 1rem 0;
+}
+.inventory-button {
+  max-width: 150px;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: var(--color1);
+  color: black;
+  font-weight: 800;
+  align-self: end;
 }
 
 @media only screen and (min-width: 600px) {
@@ -413,4 +430,7 @@ button#showPassBtn {
     margin: 0.5rem 0 0.5rem 2rem;
     text-align: left;
   }
+
+  /* Classification form */
+  
 }

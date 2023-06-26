@@ -18,15 +18,15 @@
     </ul>
 <% } %>
 
-<form id="classificationForm forms" action="/inventory/add-classification" method="post">
+<form class="classificationForm forms" action="/inv/add/classification" method="post">
     <p>*** FIELD IS REQUIRED ***</p>
-    <div>
-        <label for="classificationName">Classification Name: </label>
-        <p>*** NAME MUST BE ALPHABETIC CHARACTERS ONLY ***</p>
-        <input type="text" id="classificationName" name="classificationName" required
-            value="<%= locals.classificationName %>" pattern="/^[A-Za-z]+$/">
+    <p>*** NAME MUST BE ALPHABETIC CHARACTERS ONLY ***</p>
+    <div id="classificationFormDiv">
+        <label for="classification_name">Classification Name: </label>
+        <input type="text" id="classification_name" name="classification_name" required
+            value="<%= locals.classification_name %>" pattern="^[a-zA-Z]*$">
     </div>
-    <input class="register-button" type="submit" value="Add Classification">
+    <input class="inventory-button" type="submit" value="Add Classification">
 </form>
 
     

@@ -1,5 +1,5 @@
 // Needed Resources
-const regValidate = require("../utilities/account-validation");
+const accountValidate = require("../utilities/account-validation");
 const express = require("express");
 const router = new express.Router();
 const accountController = require("../controllers/accountController");
@@ -17,16 +17,16 @@ router.get(
 // Process Registration Data
 router.post(
   "/register",
-  regValidate.registrationRules(),
-  regValidate.checkRegData,
+  accountValidate.registrationRules(),
+  accountValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 );
 
 // Process the login attempt
 router.post(
   "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
+  accountValidate.loginRules(),
+  accountValidate.checkLoginData,
   (req, res) => {
     res.status(200).send("login process");
   }
