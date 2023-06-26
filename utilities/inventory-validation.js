@@ -1,4 +1,3 @@
-const inventoryModel = require("../models/inventory-model");
 const utilities = require(".");
 const { body, validationResult } = require("express-validator");
 const validate = {};
@@ -85,7 +84,7 @@ validate.addInventoryRules = () => {
     body("inv_miles")
       .trim()
       .isNumeric()
-      .isLength({ min: 1, max: 7 })     
+      .isLength({ min: 1, max: 7 })
       .withMessage("Please provide a valid mileage."),
 
     body("inv_color")
@@ -115,11 +114,15 @@ validate.checkInventoryData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
+    let classificationOptions = await utilities.buildClassificationOptions(
+      classification_id
+    );
     let nav = await utilities.getNav();
     res.render("inventory/add-inventory", {
       errors,
       title: "Add New Vehicle",
       nav,
+      classificationOptions,
       classification_id,
       inv_make,
       inv_model,

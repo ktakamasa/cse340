@@ -113,6 +113,22 @@ Util.buildDetails = async function (data) {
   return invDetailsView;
 };
 
+/* **************************************
+ * Build the classification options for the add inventory form
+ * ************************************ */
+Util.buildClassificationOptions = async function (option) {
+  let data = await invModel.getClassifications();
+  let options = "<option value=''>Select a Classification</option>";
+  data.rows.forEach((row) => {
+    options += `
+    <option 
+    value="${row.classification_id}"
+    ${row.classification_id === Number(option) ? "selected" : ""}>
+    ${row.classification_name}</option>`;
+  });
+  return options;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

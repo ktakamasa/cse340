@@ -99,10 +99,12 @@ invCont.addClassification = async function (req, res) {
  * Build add new inventory view
  * ***************************** */
 invCont.buildNewInventory = async function (req, res, next) {
+  let classificationOptions = await utilities.buildClassificationOptions();
   let nav = await utilities.getNav();
   res.render("./inventory/add-inventory", {
     title: "Add New Vehicle",
     nav,
+    classificationOptions,
     errors: null,
   });
 };
@@ -125,7 +127,7 @@ invCont.addInventory = async function (req, res) {
     inv_color
   } = req.body;
 
-  const inventoryResult = await invModel.addInventory(
+  const inventoryResult = await invModel.addVehicleToInventory(
     classification_id,
     inv_make,
     inv_model,
