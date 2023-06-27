@@ -320,7 +320,7 @@ button#showPassBtn {
   text-align: center;
   margin: 1rem;
   padding: 1rem;
-  color: var(--color1);
+  color: darkred;
 }
 
 /* form validation */
@@ -342,7 +342,7 @@ button#showPassBtn {
 }
 
 /* Add classification */
-#classificationFormDiv{
+#classificationFormDiv {
   margin: 1rem 0;
 }
 .inventory-button {
@@ -360,6 +360,15 @@ button#showPassBtn {
 
 form.inventoryForm p:nth-child(1) {
   margin-bottom: 1rem;
+}
+
+.accountManagementContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -439,5 +448,4 @@ form.inventoryForm p:nth-child(1) {
   }
 
   /* Classification form */
-  
 }
