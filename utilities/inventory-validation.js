@@ -10,8 +10,8 @@ validate.addClassificationRules = () => {
     // classification_name is required and must be string using only alphabetic characters
     body("classification_name")
       .trim()
-      .isLength({ min: 1 })
       .isAlpha()
+      // .isLength({ min: 1 }) // If classification name is empty, it will return an error "Invalid Value"
       .withMessage("Please provide a valid classification name."),
   ];
 };
@@ -78,8 +78,13 @@ validate.addInventoryRules = () => {
     body("inv_year")
       .trim()
       .isNumeric()
-      .isLength({ min: 4, max: 4 })
+      // .isLength({ min: 4, max: 4 })
       .withMessage("Please provide a valid year."),
+      // .custom((inv_year) => {
+      //   if ((inv_year < 1900 || inv_year > 2024) && inv_year.length !== 4) {
+      //     throw new Error("Please provide a valid year.");
+      //   }
+      // }),
 
     body("inv_miles")
       .trim()

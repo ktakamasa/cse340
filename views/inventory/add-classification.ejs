@@ -1,21 +1,21 @@
 <!-- Content Heading -->
 
 <% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
+<h1>
+    <%= title %>
+</h1>
 <% } else { res.redirect('/') } %>
 
 <%- messages() %>
 
 <% if (errors) { %>
-    <ul class="notice">
-        <% errors.array().forEach(error=> { %>
-            <li>
-                <%= error.msg %>
-            </li>
-            <% }) %>
-    </ul>
+<ul class="notice">
+    <% errors.array().forEach(error=> { %>
+    <li>
+        <%= error.msg %>
+    </li>
+    <% }) %>
+</ul>
 <% } %>
 
 <form class="classificationForm forms" action="/inv/add-classification" method="post">
@@ -28,5 +28,3 @@
     </div>
     <input class="inventory-button" type="submit" value="Add Classification">
 </form>
-
-    
