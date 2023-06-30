@@ -368,7 +368,38 @@ form.inventoryForm p:nth-child(1) {
   align-items: center;
   justify-content: center;
   margin: 1rem;
-  padding: 1rem;
+}
+.accountManagementContent h2 {
+  margin: 0 0 1rem 0;
+}
+
+.manageInv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.manageInv > * {
+  margin-bottom: 0.5rem;
+}
+
+.manageInv select#classificationList {
+  max-width: 300px;
+  width: 100%;
+}
+
+table#inventoryDisplay {
+  width: 100%;
+  max-width: 350px;
+}
+table#inventoryDisplay th {
+  text-align: left;
+  font-weight: 900;
+  font-size: 1.2rem;
+  
+  
 }
 
 @media only screen and (min-width: 600px) {
@@ -447,5 +478,8 @@ form.inventoryForm p:nth-child(1) {
     text-align: left;
   }
 
-  /* Classification form */
+  .manageInv {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
 }

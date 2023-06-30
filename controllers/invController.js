@@ -40,14 +40,16 @@ invCont.buildDetailsByInvId = async function (req, res, next) {
 };
 
 /* ***************************
- *  Build Vehicle Management view
+ *  Build Vehicle/Inventory Management view
  * ************************** */
 invCont.buildVehicleManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList();
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
     errors: null,
+    classificationSelect,
   });
 };
 
@@ -99,12 +101,12 @@ invCont.addClassification = async function (req, res) {
  * Build add new inventory view
  * ***************************** */
 invCont.buildNewInventory = async function (req, res, next) {
-  let classificationOptions = await utilities.buildClassificationOptions();
+  let classificationSelect = await utilities.buildClassificationList();
   let nav = await utilities.getNav();
   res.render("./inventory/add-inventory", {
     title: "Add New Vehicle",
     nav,
-    classificationOptions,
+    classificationSelect,
     errors: null,
   });
 };
@@ -114,7 +116,7 @@ invCont.buildNewInventory = async function (req, res, next) {
  * ***************************** */
 invCont.addInventory = async function (req, res) {
   let nav = await utilities.getNav();
-  const { 
+  const {
     classification_id,
     inv_make,
     inv_model,
@@ -124,7 +126,7 @@ invCont.addInventory = async function (req, res) {
     inv_price,
     inv_year,
     inv_miles,
-    inv_color
+    inv_color,
   } = req.body;
 
   const inventoryResult = await invModel.addVehicleToInventory(
@@ -157,6 +159,21 @@ invCont.addInventory = async function (req, res) {
       nav,
       errors: null,
     });
+  }
+};
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id);
+  const invData = await invModel.getInventoryByClassificationId(
+    classification_id
+  );
+  if (invData[0].inv_id) {
+    return res.json(invData);
+  } else {
+    next(new Error("No data returned"));
   }
 };
 

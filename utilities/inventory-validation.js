@@ -80,11 +80,11 @@ validate.addInventoryRules = () => {
       .isNumeric()
       // .isLength({ min: 4, max: 4 })
       .withMessage("Please provide a valid year."),
-      // .custom((inv_year) => {
-      //   if ((inv_year < 1900 || inv_year > 2024) && inv_year.length !== 4) {
-      //     throw new Error("Please provide a valid year.");
-      //   }
-      // }),
+    // .custom((inv_year) => {
+    //   if ((inv_year < 1900 || inv_year > 2024) && inv_year.length !== 4) {
+    //     throw new Error("Please provide a valid year.");
+    //   }
+    // }),
 
     body("inv_miles")
       .trim()
@@ -119,7 +119,7 @@ validate.checkInventoryData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
-    let classificationOptions = await utilities.buildClassificationOptions(
+    let classificationSelect = await utilities.buildClassificationList(
       classification_id
     );
     let nav = await utilities.getNav();
@@ -127,7 +127,7 @@ validate.checkInventoryData = async (req, res, next) => {
       errors,
       title: "Add New Vehicle",
       nav,
-      classificationOptions,
+      classificationSelect,
       classification_id,
       inv_make,
       inv_model,
