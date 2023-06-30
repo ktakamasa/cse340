@@ -282,8 +282,10 @@ select {
 }
 
 input.login-button,
-input.register-button {
-  max-width: 100px;
+input.register-button,
+.inventory-button,
+.inventoryUpdate-button {
+  max-width: 150px;
   width: 100%;
   padding: 0.5rem;
   margin: 0.5rem 0;
@@ -300,7 +302,7 @@ form.loginForm p {
   margin-top: 1rem;
 }
 
-form.registerForm p:nth-child(1) {
+.forms p:nth-child(1) {
   margin-bottom: 1rem;
 }
 ul#passReq li {
@@ -344,22 +346,6 @@ button#showPassBtn {
 /* Add classification */
 #classificationFormDiv {
   margin: 1rem 0;
-}
-.inventory-button {
-  max-width: 150px;
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 5px;
-  border: 1px solid black;
-  background-color: var(--color1);
-  color: black;
-  font-weight: 800;
-  align-self: end;
-}
-
-form.inventoryForm p:nth-child(1) {
-  margin-bottom: 1rem;
 }
 
 .accountManagementContent {

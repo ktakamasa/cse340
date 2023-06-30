@@ -7,13 +7,13 @@ const invValidate = require("../utilities/inventory-validation");
 
 // Route to build inventory by classification view
 router.get(
-  "/type/:classificationId",
+  "/type/:classification_id",
   utilities.handleErrors(invController.buildByClassificationId)
 );
 
 // Route to build inventory item details by inv id view
 router.get(
-  "/detail/:invId",
+  "/detail/:inv_id",
   utilities.handleErrors(invController.buildDetailsByInvId)
 );
 
@@ -48,10 +48,17 @@ router.post(
   utilities.handleErrors(invController.addInventory)
 );
 
+// Get inventory for AJAX route
 router.get(
   "/getInventory/:classification_id",
   // utilities.checkAccountType,
   utilities.handleErrors(invController.getInventoryJSON)
+);
+
+// route to build edit inventory by inventory id view
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
 );
 
 module.exports = router;
