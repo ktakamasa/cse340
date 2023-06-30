@@ -111,8 +111,17 @@ async function accountLogin(req, res) {
       );
       res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
       return res.redirect("/account/");
+    } else {
+      req.flash("notice", "Please check your credentials and try again.");
+      res.status(400).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email,
+      });
     }
   } catch (error) {
+    console.log(error.message);
     return new Error("Access Forbidden");
   }
 }
@@ -122,7 +131,7 @@ async function accountLogin(req, res) {
  * *************************************** */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
-  res.render("account/account", {
+  res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,

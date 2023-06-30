@@ -166,6 +166,7 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login");
   }
 };
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

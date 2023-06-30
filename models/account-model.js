@@ -4,7 +4,7 @@
 const pool = require("../database");
 
 /* *****************************
- *   Register new account
+ *   Register new account - Adds new account to account table
  * *************************** */
 async function registerAccount(
   account_firstname,

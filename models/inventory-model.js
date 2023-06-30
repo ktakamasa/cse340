@@ -1,7 +1,7 @@
 const pool = require("../database/index.js");
 
 /* ***************************
- *  Get all classification data
+ *  Get all classification data - For Nav
  * ************************** */
 async function getClassifications() {
   return await pool.query(
@@ -10,7 +10,7 @@ async function getClassifications() {
 }
 
 /* ***************************
- *  Get all inventory items and classification_name by classification_id
+ *  Get all inventory items and classification_name by classification_id - For classification views
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
@@ -28,7 +28,7 @@ async function getInventoryByClassificationId(classification_id) {
 }
 
 /* ***************************
- *  Get inventory item details by inv_id
+ *  Get inventory item details by inv_id - For details view
  * ************************** */
 async function getInventoryByInvId(inv_id) {
   try {
@@ -44,7 +44,7 @@ async function getInventoryByInvId(inv_id) {
 }
 
 /* ***************************
- *  Add new classification
+ *  Add new to classification table
  * ************************** */
 async function addClassification(classification_name) {
   try {
@@ -57,7 +57,7 @@ async function addClassification(classification_name) {
 }
 
 /* ***************************
- *  Add new vehicle to inventory
+ *  Add new vehicle to inventory table
  * ************************** */
 async function addVehicleToInventory(
   classification_id,
