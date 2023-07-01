@@ -295,6 +295,13 @@ input.register-button,
   color: black;
   font-weight: 800;
   align-self: end;
+  cursor: pointer;
+}
+input.login-button:hover,
+input.register-button:hover,
+.inventory-button:hover,
+.inventoryUpdate-button:hover {
+  background-color: rgba(32, 175, 219, 0.5);
 }
 
 form.loginForm p {
@@ -384,8 +391,6 @@ table#inventoryDisplay th {
   text-align: left;
   font-weight: 900;
   font-size: 1.2rem;
-  
-  
 }
 
 @media only screen and (min-width: 600px) {
