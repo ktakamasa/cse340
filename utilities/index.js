@@ -175,19 +175,34 @@ Util.checkLogin = (req, res, next) => {
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-
 /* ****************************************
  * Check account type for administrative views
  **************************************** */
 Util.checkAccountType = (req, res, next) => {
   const accountData = res.locals.accountData;
-  if (accountData.account_type === "Admin" || accountData.account_type === "Employee") {
+  if (
+    accountData.account_type === "Admin" ||
+    accountData.account_type === "Employee"
+  ) {
     next();
   } else {
     req.flash("notice", "You do not have permission to view that page.");
     req.flash("notice", "Please log in as an Admin or Employee.");
     return res.redirect("/account/login");
   }
+};
+
+/* ****************************************
+ * Check account type for account management view
+ **************************************** */
+Util.accountManagementAccountType = async function (data) {
+  let invManageLinks;
+  if (data.account_type === "Admin" || data.account_type === "Employee") {
+    invManageLinks = `
+      <h3>Inventory Management</h3>
+      <p><a href="/inv/">Manage Inventory</a></p>`;
+  }
+  return invManageLinks;
 };
 
 module.exports = Util;

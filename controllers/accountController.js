@@ -131,10 +131,17 @@ async function accountLogin(req, res) {
  * *************************************** */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
-  res.render("account/management", {
+  const data = await accountModel.getAccountByEmail(
+    res.locals.accountData.account_email
+  );
+  console.log(data.account_type);
+  const invManageLinks = await utilities.accountManagementAccountType(data);
+    res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    firstName: data.account_firstname,
+    invManageLinks,
   });
 }
 

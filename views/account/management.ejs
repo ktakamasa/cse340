@@ -17,13 +17,10 @@
 <% } %>
 
 <div class="accountManagementContent">
-    <h2>Welcome <%= accountData.account_firstname %></h2>
+    <h2>Welcome <%= firstName %></h2>
     <p>You're logged in.</p>
 
-    <a href="/account/edit/">Update Account information</a>
-    
-    <% if (accountData.account_type === "Admin" || accountData.account_type === "Employee") { %>
-    <h3>Inventory Management</h3>
-    <a href="/inv/">Manage Inventory</a>
-    <% } %>
+    <p><a href="/account/edit/">Update Account information</a></p>
+
+    <%- invManageLinks %>
 </div>
