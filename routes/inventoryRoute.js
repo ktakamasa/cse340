@@ -5,6 +5,9 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities");
 const invValidate = require("../utilities/inventory-validation");
 
+// Route to build vehicle management view
+router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
+
 // Route to build inventory by classification view
 router.get(
   "/type/:classification_id",
@@ -17,15 +20,11 @@ router.get(
   utilities.handleErrors(invController.buildDetailsByInvId)
 );
 
-// Route to build vehicle management view
-router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
-
 // Route to build add new classification view
 router.get(
   "/add-classification",
   utilities.handleErrors(invController.buildNewClassification)
 );
-
 // Post route to add new classification
 router.post(
   "/add-classification",
@@ -39,7 +38,6 @@ router.get(
   "/add-inventory",
   utilities.handleErrors(invController.buildNewInventory)
 );
-
 // Post route to add new inventory item
 router.post(
   "/add-inventory",
@@ -55,12 +53,11 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
-// route to build edit inventory by inventory id view
+// route to build edit/update inventory by inventory id view
 router.get(
   "/edit/:inv_id",
   utilities.handleErrors(invController.editInventoryView)
 );
-
 // POST route to update inventory item
 router.post(
   "/update/",
@@ -71,7 +68,6 @@ router.post(
 
 // GET route to delete inventory item - Deliver the delete confirmation view
 router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView));
-
 // POST route to delete inventory item
 router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
 

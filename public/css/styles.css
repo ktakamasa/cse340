@@ -45,6 +45,7 @@ span.siteName a:visited {
 }
 
 div#tools a {
+  /* display: inline-block; */
   font-size: 1rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -311,6 +312,13 @@ form.loginForm p {
 }
 ul#passReq li {
   margin: 0.25rem 0 0 1.5rem;
+}
+
+form.loginForm div.pwd-reqs p {
+  margin: 0;
+}
+div.pwd-reqs {
+  margin: 0 0 0.5rem 0;
 }
 
 button#showPassBtn {

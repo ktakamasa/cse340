@@ -138,9 +138,18 @@ async function buildAccountManagement(req, res) {
     title: "Account Management",
     nav,
     errors: null,
-    name: data.account_firstname,
+    firstName: data.account_firstname,
   });
 }
+
+/* ****************************************
+ *  Process Logout
+ * ************************************ */
+async function logout (req, res) {
+  res.clearCookie("jwt");
+  req.flash("notice", "You have been logged out.");
+  res.redirect("/");
+};
 
 module.exports = {
   buildLogin,
@@ -148,4 +157,5 @@ module.exports = {
   registerAccount,
   accountLogin,
   buildAccountManagement,
+  logout,
 };

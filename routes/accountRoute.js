@@ -5,26 +5,15 @@ const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
 
-// Default route
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
+// Default route - Management View
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement)
+);
 
 // Route to build account login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
-
-// Route to build login view
-router.get(
-  "/registration",
-  utilities.handleErrors(accountController.buildRegister)
-);
-
-// Process Registration Data
-router.post(
-  "/register",
-  accountValidate.registrationRules(),
-  accountValidate.checkRegData,
-  utilities.handleErrors(accountController.registerAccount)
-);
-
 // Process the login request
 router.post(
   "/login",
@@ -33,4 +22,19 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 );
 
+// Route to build login view
+router.get(
+  "/registration",
+  utilities.handleErrors(accountController.buildRegister)
+);
+// Process Registration Data
+router.post(
+  "/register",
+  accountValidate.registrationRules(),
+  accountValidate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+);
+
+// GET route to logout
+router.get("/logout", utilities.handleErrors(accountController.logout));
 module.exports = router;
