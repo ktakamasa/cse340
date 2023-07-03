@@ -131,14 +131,10 @@ async function accountLogin(req, res) {
  * *************************************** */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
-  const data = await accountModel.getAccountByEmail(
-    res.locals.accountData.account_email
-  );
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
-    firstName: data.account_firstname,
   });
 }
 

@@ -367,8 +367,8 @@ button#showPassBtn {
   justify-content: center;
   margin: 1rem;
 }
-.accountManagementContent h2 {
-  margin: 0 0 1rem 0;
+.accountManagementContent > * {
+  margin: 0 0 0.5rem 0;
 }
 
 .manageInv {
@@ -475,6 +475,11 @@ table#inventoryDisplay th {
   }
 
   .manageInv {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .accountManagementContent {
     align-items: stretch;
     justify-content: flex-start;
   }

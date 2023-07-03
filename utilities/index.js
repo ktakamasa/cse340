@@ -175,4 +175,19 @@ Util.checkLogin = (req, res, next) => {
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
+
+/* ****************************************
+ * Check account type for administrative views
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData;
+  if (accountData.account_type === "Admin" || accountData.account_type === "Employee") {
+    next();
+  } else {
+    req.flash("notice", "You do not have permission to view that page.");
+    req.flash("notice", "Please log in as an Admin or Employee.");
+    return res.redirect("/account/login");
+  }
+};
+
 module.exports = Util;

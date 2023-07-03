@@ -6,7 +6,12 @@ const utilities = require("../utilities");
 const invValidate = require("../utilities/inventory-validation");
 
 // Route to build vehicle management view
-router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildVehicleManagement)
+);
 
 // Route to build inventory by classification view
 router.get(
@@ -28,6 +33,8 @@ router.get(
 // Post route to add new classification
 router.post(
   "/add-classification",
+  utilities.checkLogin,
+  utilities.checkAccountType,
   invValidate.addClassificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
@@ -36,11 +43,15 @@ router.post(
 // Route to build add new inventory item view
 router.get(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(invController.buildNewInventory)
 );
 // Post route to add new inventory item
 router.post(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAccountType,
   invValidate.addInventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
@@ -49,26 +60,41 @@ router.post(
 // Get inventory for AJAX route
 router.get(
   "/getInventory/:classification_id",
-  // utilities.checkAccountType,
+  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
 // route to build edit/update inventory by inventory id view
 router.get(
   "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(invController.editInventoryView)
 );
 // POST route to update inventory item
 router.post(
   "/update/",
+  utilities.checkLogin,
+  utilities.checkAccountType,
   invValidate.addInventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
 
 // GET route to delete inventory item - Deliver the delete confirmation view
-router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView));
+router.get(
+  "/delete/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteInventoryView)
+);
 // POST route to delete inventory item
-router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
+router.post(
+  "/delete/",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteInventoryItem)
+);
 
 module.exports = router;

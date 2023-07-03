@@ -36,5 +36,9 @@ router.post(
 );
 
 // GET route to logout
-router.get("/logout", utilities.handleErrors(accountController.logout));
+router.get(
+  "/logout",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.logout)
+);
 module.exports = router;
