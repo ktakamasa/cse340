@@ -281,10 +281,7 @@ select {
   border: 1px solid black;
 }
 
-input.login-button,
-input.register-button,
-.inventory-button,
-.inventoryUpdate-button {
+.form-button {
   max-width: 150px;
   width: 100%;
   padding: 0.5rem;

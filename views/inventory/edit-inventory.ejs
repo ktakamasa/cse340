@@ -59,7 +59,7 @@
     <label for="inv_color">Color: </label>
     <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>" pattern="^[a-zA-Z]*$">
 
-    <input class="inventoryUpdate-button" type="submit" value="Update Vehicle" disabled>
+    <input class="inventoryUpdate-button form-button" type="submit" value="Update Vehicle" disabled>
 
     <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
 </form>
