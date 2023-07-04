@@ -78,6 +78,7 @@ invCont.addClassification = async function (req, res) {
 
   if (classificationResult) {
     let nav = await utilities.getNav();
+    const classificationSelect = await utilities.buildClassificationList();
     req.flash(
       "notice",
       `The "${classification_name}" classification was successfully added.`
@@ -86,6 +87,7 @@ invCont.addClassification = async function (req, res) {
       title: "Vehicle Management",
       nav,
       errors: null,
+      classificationSelect,
     });
   } else {
     req.flash("notice", "Sorry, the classification was not added.");
@@ -106,8 +108,8 @@ invCont.buildNewInventory = async function (req, res, next) {
   res.render("./inventory/add-inventory", {
     title: "Add New Vehicle",
     nav,
-    classificationSelect,
     errors: null,
+    classificationSelect,
   });
 };
 
@@ -116,6 +118,7 @@ invCont.buildNewInventory = async function (req, res, next) {
  * ***************************** */
 invCont.addInventory = async function (req, res) {
   let nav = await utilities.getNav();
+  let classificationSelect = await utilities.buildClassificationList();
   const {
     classification_id,
     inv_make,
@@ -151,6 +154,7 @@ invCont.addInventory = async function (req, res) {
       title: "Vehicle Management",
       nav,
       errors: null,
+      classificationSelect,
     });
   } else {
     req.flash("notice", "Sorry, the vehicle was not added.");
