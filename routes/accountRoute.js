@@ -54,6 +54,7 @@ router.post(
   "/updatePassword",
   utilities.checkLogin,
   accountValidate.updatePasswordRules(),
+  accountValidate.checkUpdateAccountPassword,
   utilities.handleErrors(accountController.updatePassword)
 );
 

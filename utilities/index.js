@@ -26,11 +26,19 @@ Util.getNav = async function (req, res, next) {
   return list;
 };
 
+/* ************************
+ * Gets first name of currently logged in user
+ ************************** */
+Util.getFirstName = async function (req, res, next) {
+  const accountData = res.locals.accountData;
+  return accountData.account_firstname;
+};
+
 /* **************************************
  * Build the classification view HTML
  * ************************************ */
 Util.buildClassificationGrid = async function (data) {
-  let grid;
+  let grid = "";
   if (data.length > 0) {
     grid = '<ul id="inv-display">';
     data.forEach((vehicle) => {

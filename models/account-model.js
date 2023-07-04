@@ -89,8 +89,8 @@ async function updateAccount(
     ]);
     return data.rows[0];
   } catch (error) {
-    return new Error("Unable to update account");
     console.error(error.message);
+    return new Error("Unable to update account");
 
   }
 }
@@ -105,8 +105,8 @@ async function updatePassword(account_password, account_id) {
     const data = await pool.query(sql, [account_password, account_id]);
     return data.rows[0];
   } catch (error) {
-    return new Error("Unable to update password");
     console.error(error.message);
+    return new Error("Unable to update password");
   }
 }
 

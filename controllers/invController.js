@@ -11,7 +11,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await invModel.getInventoryByClassificationId(classification_id);
   const grid = await utilities.buildClassificationGrid(data);
   let nav = await utilities.getNav();
-  const className = data[0].classification_name;
+  const className = data.length > 0 ? data[0].classification_name : "";
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
@@ -174,7 +174,9 @@ invCont.getInventoryJSON = async (req, res, next) => {
   const invData = await invModel.getInventoryByClassificationId(
     classification_id
   );
-  if (invData[0].inv_id) {
+  if (invData.length === 0) {
+    return res.json([]);
+  } else if (invData[0].inv_id) {
     return res.json(invData);
   } else {
     next(new Error("No data returned"));

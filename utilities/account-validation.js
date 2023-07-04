@@ -83,19 +83,27 @@ validate.loginRules = () => {
       .trim()
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
-      .withMessage("A valid email is required."),
-    // .custom(async (account_email) => {
-    //   const emailExists = await accountModel.checkExistingEmail(
-    //     account_email
-    //   );
-    //   if (!emailExists) {
-    //     throw new Error("This email is not registered. Please sign up.");
-    //   }
-    // }),
+      .withMessage("A valid email is required.")
+      // Check if email exists in the database
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(
+          account_email
+        );
+        if (!emailExists) {
+          throw new Error("This email is not registered. Please sign up.");
+        }
+      }),
 
     body("account_password")
       .trim()
-      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      // .notEmpty()
       .withMessage("Please enter your password."),
   ];
 };
@@ -142,28 +150,27 @@ validate.updateAccountRules = () => {
       .trim()
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
-      .withMessage("A valid email is required."),
-      // .custom(async (account_email) => {
-      //   const emailExists = await accountModel.checkExistingEmail(
-      //     account_email
-      //   );
-      //   if (emailExists) {
-      //     throw new Error("Email exists. Please use a different email");
-      //   }
-      // }),
-      // // valid account_id is required  -- Not sure if I need this
-      // body("account_id")
-      // .trim()
-      // .isInt()
-      // .withMessage("Invalid account id.")
+      .withMessage("A valid email is required.")
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(
+          account_email
+        );
+        // check if email exists only if it's not the current email
+        if (emailExists && account_email !== account_email) { // don't know a better way.. 
+          throw new Error("Email exists. Please use a different email");
+        }
+      }),
+    // valid account_id is required  -- Not sure if I need this
+    body("account_id").trim().isInt().withMessage("Invalid account id."),
   ];
 };
 
 /* ******************************
- * Check account update data 
+ * Check account update data
  * ***************************** */
 validate.checkUpdateAccountData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  const { account_firstname, account_lastname, account_email, account_id } =
+    req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -175,7 +182,7 @@ validate.checkUpdateAccountData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
-      // account_id,
+      account_id,
     });
     return;
   }
@@ -198,7 +205,33 @@ validate.updatePasswordRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements."),
+    body("account_id").trim().isInt().withMessage("Invalid account id."),
   ];
+};
+
+/* ******************************
+ Check update password
+ ***************************** */
+validate.checkUpdateAccountPassword = async (req, res, next) => {
+  const { account_id } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    const accountData = res.locals.accountData;
+    res.render("account/update-account", {
+      title: "Edit Account",
+      nav,
+      errors,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+      account_id,
+    });
+
+    return;
+  }
+  next();
 };
 
 module.exports = validate;
