@@ -27,10 +27,10 @@ invCont.buildDetailsByInvId = async function (req, res, next) {
   const inv_id = req.params.inv_id;
   const data = await invModel.getInventoryByInvId(inv_id);
   // console.log(data);
-  const invDetailsView = await utilities.buildDetails(data[0]);
+  const invDetailsView = await utilities.buildDetails(data);
   let nav = await utilities.getNav();
   const yearMakeMod =
-    data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model;
+    data.inv_year + " " + data.inv_make + " " + data.inv_model;
   res.render("./inventory/details", {
     title: yearMakeMod,
     nav,
@@ -185,25 +185,25 @@ invCont.editInventoryView = async function (req, res, next) {
   let nav = await utilities.getNav();
   const itemData = await invModel.getInventoryByInvId(inv_id);
   const classificationSelect = await utilities.buildClassificationList(
-    itemData[0].classification_id
+    itemData.classification_id
   );
-  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`;
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
   res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
     classificationSelect: classificationSelect,
     errors: null,
-    inv_id: itemData[0].inv_id,
-    inv_make: itemData[0].inv_make,
-    inv_model: itemData[0].inv_model,
-    inv_year: itemData[0].inv_year,
-    inv_description: itemData[0].inv_description,
-    inv_image: itemData[0].inv_image,
-    inv_thumbnail: itemData[0].inv_thumbnail,
-    inv_price: itemData[0].inv_price,
-    inv_miles: itemData[0].inv_miles,
-    inv_color: itemData[0].inv_color,
-    classification_id: itemData[0].classification_id,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_description: itemData.inv_description,
+    inv_image: itemData.inv_image,
+    inv_thumbnail: itemData.inv_thumbnail,
+    inv_price: itemData.inv_price,
+    inv_miles: itemData.inv_miles,
+    inv_color: itemData.inv_color,
+    classification_id: itemData.classification_id,
   });
 };
 
@@ -276,16 +276,16 @@ invCont.deleteInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id);
   let nav = await utilities.getNav();
   const itemData = await invModel.getInventoryByInvId(inv_id);
-  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`;
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
   res.render("./inventory/delete-confirm", {
     title: "Delete " + itemName,
     nav,
     errors: null,
-    inv_id: itemData[0].inv_id,
-    inv_make: itemData[0].inv_make,
-    inv_model: itemData[0].inv_model,
-    inv_year: itemData[0].inv_year,
-    inv_price: itemData[0].inv_price,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
   });
 };
 

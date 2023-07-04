@@ -196,13 +196,13 @@ Util.checkAccountType = (req, res, next) => {
  * Check account type for account management view
  **************************************** */
 Util.accountManagementAccountType = async function (data) {
-  let invManageLinks;
+  let invManageLink;
   if (data.account_type === "Admin" || data.account_type === "Employee") {
-    invManageLinks = `
+    invManageLink = `
       <h3>Inventory Management</h3>
       <p><a href="/inv/">Manage Inventory</a></p>`;
   }
-  return invManageLinks;
+  return invManageLink;
 };
 
 module.exports = Util;

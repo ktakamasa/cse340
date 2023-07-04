@@ -35,6 +35,28 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
+// GET route to build update account view
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateAccount)
+);
+// POST route to update account
+router.post(
+  "/updateAccount",
+  utilities.checkLogin,
+  accountValidate.updateAccountRules(),
+  accountValidate.checkUpdateAccountData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+// POST route to update password
+router.post(
+  "/updatePassword",
+  utilities.checkLogin,
+  accountValidate.updatePasswordRules(),
+  utilities.handleErrors(accountController.updatePassword)
+);
+
 // GET route to logout
 router.get(
   "/logout",
