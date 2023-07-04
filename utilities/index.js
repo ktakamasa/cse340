@@ -26,14 +26,6 @@ Util.getNav = async function (req, res, next) {
   return list;
 };
 
-/* ************************
- * Gets first name of currently logged in user
- ************************** */
-Util.getFirstName = async function (req, res, next) {
-  const accountData = res.locals.accountData;
-  return accountData.account_firstname;
-};
-
 /* **************************************
  * Build the classification view HTML
  * ************************************ */
