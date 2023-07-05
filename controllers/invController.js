@@ -8,12 +8,13 @@ const invCont = {};
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classification_id;
+  const classification_name = await invModel.getClassificationNameById(classification_id);
   const data = await invModel.getInventoryByClassificationId(classification_id);
   const grid = await utilities.buildClassificationGrid(data);
   let nav = await utilities.getNav();
-  const className = data.length > 0 ? data[0].classification_name : "";
+  const className = data.length > 0 ? data[0].classification_name : classification_name;
   res.render("./inventory/classification", {
-    title: className + " vehicles",
+    title: className + " Vehicles",
     nav,
     grid,
     errors: null,

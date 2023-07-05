@@ -131,16 +131,15 @@ async function accountLogin(req, res) {
  * *************************************** */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
-  const data = await accountModel.getAccountById(
-    res.locals.accountData.account_id
-  );
-  console.log(data);
-  const invManageLink = await utilities.accountManagementAccountType(data);
+  const account_id = parseInt(res.locals.accountData.account_id);
+  const accountData = await accountModel.getAccountById(account_id);
+  // console.log(data);
+  const invManageLink = await utilities.accountManagementAccountType(accountData);
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
-    firstName: data.account_firstname,
+    firstName: accountData.account_firstname,
     invManageLink,
   });
 }
@@ -150,16 +149,16 @@ async function buildAccountManagement(req, res) {
  * *************************************** */
 async function buildUpdateAccount(req, res) {
   let nav = await utilities.getNav();
-  const { account_id } = req.params;
-  const data = await accountModel.getAccountById(account_id);
+  const account_id = parseInt(req.params.account_id);
+  const accountData = await accountModel.getAccountById(account_id);
   res.render("account/update-account", {
     title: "Edit Account",
     nav,
     errors: null,
-    account_firstname: data.account_firstname,
-    account_lastname: data.account_lastname,
-    account_email: data.account_email,
-    account_id: data.account_id,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
+    account_id: accountData.account_id,
   });
 }
 
@@ -178,9 +177,29 @@ async function updateAccount(req, res) {
     account_id
   );
 
+  const accountData = await accountModel.getAccountById(account_id);
   if (updateResult) {
-    req.flash("notice", `Your account was successfully updated.`);
-    res.redirect("/account/");
+    try {
+      const accessToken = jwt.sign(
+        accountData,
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: 3600 * 1000 }
+      );
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+      req.flash("notice", `Your account was successfully updated.`);
+      res.redirect("/account/");
+    } catch (error) {
+      req.flash("notice", "Sorry, there was an error updating your account.");
+      res.status(500).render("account/update-account", {
+        title: "Edit Account",
+        nav,
+        errors: null,
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id,
+      });
+    }
   } else {
     req.flash("notice", "Sorry, the update failed.");
     res.status(501).render("account/update-account", {
@@ -215,7 +234,6 @@ async function updatePassword(req, res) {
       errors: null,
     });
   }
-
   const updateResult = await accountModel.updatePassword(
     hashedPassword,
     account_id

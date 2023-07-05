@@ -24,6 +24,20 @@ async function checkExistingClassification(classification_name) {
 }
 
 /* ***************************
+ *  Get classification name by classification_id
+ * ************************** */
+async function getClassificationNameById(classification_id) {
+  try {
+    const sql =
+      "SELECT classification_name FROM public.classification WHERE classification_id = $1";
+    const classification = await pool.query(sql, [classification_id]);
+    return classification.rows[0].classification_name;
+  } catch (error) {
+    return error.message;
+  }
+}
+
+/* ***************************
  *  Get all inventory items and classification_name by classification_id - For classification views
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
@@ -159,6 +173,7 @@ async function deleteInventoryItem(inv_id) {
 module.exports = {
   getClassifications,
   checkExistingClassification,
+  getClassificationNameById,
   getInventoryByClassificationId,
   getInventoryByInvId,
   addClassification,

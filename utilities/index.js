@@ -109,7 +109,7 @@ Util.buildDetails = async function (data) {
   `;
   } else {
     invDetailsView +=
-      '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+      '<p class="notice">Sorry, no matching vehicles could be found for this classification.</p>';
   }
 
   return invDetailsView;
@@ -160,6 +160,7 @@ Util.checkJWTToken = (req, res, next) => {
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
+    const accountData = res.locals.accountData;
     next();
   } else {
     req.flash("notice", "Please log in.");
