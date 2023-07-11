@@ -8,11 +8,14 @@ const invCont = {};
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classification_id;
-  const classification_name = await invModel.getClassificationNameById(classification_id);
+  const classification_name = await invModel.getClassificationNameById(
+    classification_id
+  );
   const data = await invModel.getInventoryByClassificationId(classification_id);
   const grid = await utilities.buildClassificationGrid(data);
   let nav = await utilities.getNav();
-  const className = data.length > 0 ? data[0].classification_name : classification_name;
+  const className =
+    data.length > 0 ? data[0].classification_name : classification_name;
   res.render("./inventory/classification", {
     title: className + " Vehicles",
     nav,
@@ -311,6 +314,62 @@ invCont.deleteInventoryItem = async function (req, res, next) {
   } else {
     req.flash("notice", "Sorry, the delete failed.");
     res.redirect("/inv/delete/inv_id");
+  }
+};
+
+/* ***************************
+ *  Delete Classification View
+ * ************************** */
+invCont.deleteClassificationView = async function (req, res, next) {
+  const classification_id = parseInt(req.params.classification_id);
+  let nav = await utilities.getNav();
+  const classificationName = await invModel.getClassificationNameById(
+    classification_id
+  );
+  let classificationSelect = await utilities.buildClassificationList(
+    classification_id
+  );
+  res.render("./inventory/delete-classification", {
+    title: "Delete Classification",
+    nav,
+    errors: null,
+    classificationSelect,
+    classification_id: classification_id,
+    classification_name: classificationName,
+  });
+};
+
+/* ***************************
+ *  Process Delete Classification
+ * ************************** */
+invCont.deleteClassification = async function (req, res, next) {
+  const classification_id = parseInt(req.body.classification_id);
+  console.log(classification_id);
+  const classificationName = await invModel.getClassificationNameById(
+    classification_id
+  );
+  // check if inventory exists for classification
+  const invData = await invModel.getInventoryByClassificationId(
+    classification_id
+  );
+  if (invData.length > 0) {
+    req.flash(
+      "notice",
+      "Sorry, the classification cannot be deleted because it has inventory items."
+    );
+    res.redirect("/inv/delete-classification");
+  } else {
+    const deleteResult = await invModel.deleteClassification(classification_id);
+    if (deleteResult) {
+      req.flash(
+        "notice",
+        `The "${classificationName}" classification was successfully deleted.`
+      );
+      res.redirect("/inv/");
+    } else {
+      req.flash("notice", "Sorry, the delete failed.");
+      res.redirect("/inv/delete-classification");
+    }
   }
 };
 

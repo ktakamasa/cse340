@@ -29,7 +29,8 @@ body {
 }
 
 a {
-  color: black
+  color: black;
+  text-decoration: underline;
 }
 
 #top-header {
@@ -376,7 +377,8 @@ button#showPassBtn {
   margin: 0 0 0.5rem 0;
 }
 
-.manageInv {
+.manageInv,
+.manageClassification {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -384,7 +386,8 @@ button#showPassBtn {
   margin: 1rem;
 }
 
-.manageInv > * {
+.manageInv > *,
+.manageClassification > * {
   margin-bottom: 0.5rem;
 }
 
@@ -496,7 +499,8 @@ table#inventoryDisplay th {
     text-align: left;
   }
 
-  .manageInv {
+  .manageInv,
+  .manageClassification {
     align-items: stretch;
     justify-content: flex-start;
   }
