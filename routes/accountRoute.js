@@ -64,4 +64,19 @@ router.get(
   utilities.checkLogin,
   utilities.handleErrors(accountController.logout)
 );
+
+// GET route to delete account
+router.get(
+  "/delete/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildDeleteAccount)
+);
+
+// Post route to delete account
+router.post(
+  "/deleteAccount",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.deleteAccount)
+);
+
 module.exports = router;
