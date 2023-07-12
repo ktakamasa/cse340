@@ -413,12 +413,12 @@ table#inventoryDisplay th {
 
 #deleteAccountLink,
 #deleteAccountLink a {
-  color: red;
+  color: darkred;
   margin-top: 2rem;
 }
 
 #deleteAccountForm p {
-  color: red;
+  color: darkred;
 }
 @media only screen and (min-width: 600px) {
   h1 {
